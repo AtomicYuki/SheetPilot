@@ -1,4 +1,118 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#070e22"><link rel="icon" href="logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,600;0,700;0,800;1,300;1,800&display=swap"><link rel="stylesheet" href="style.css"><title>Privacy Policy | SheetPilot</title></head><body><a class="skip" href="#main">Skip to content</a><header class="top"><div class="wrap"><a class="brand" href="index.html"><img src="logo.png" alt="" width="38" height="38"><span>Sheet<b>Pilot</b></span></a><button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><span></span><span></span><span></span></button><nav class="links" id="links" aria-label="Main"><a href="index.html#how">How it works</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="index.html#faq">FAQ</a></nav></div></header><main id="main" class="doc"><div class="wrap"><h1>Privacy Policy</h1><p class="when">Last updated: November 2, 2026</p><p>SheetPilot is made by Juan Paolo Dente. This page explains in plain words what we collect and why.</p><h2>Your CSV files</h2><p>Your files are opened and cleaned inside your browser on your own computer. We do not upload, copy, or store the contents of your files.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy Policy | SheetPilot</title><meta name="description" content="How SheetPilot handles your data."><meta name="theme-color" content="#f6f8fc"><link rel="icon" href="logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700;800&display=swap"><style>
+:root{--ink:#0c1730;--navy:#08102a;--navy2:#111d42;--orange:#ff7a1a;--oink:#a84300;--bg:#f6f8fc;--card:#fff;--line:#dde4f0;--muted:#4a5876;--ok:#16905a;--d:"Bricolage Grotesque",Figtree,system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Figtree,system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--d);margin:0;letter-spacing:-.03em;line-height:1.06}
+a{color:inherit}.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:99;border-radius:8px}
+.nav{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font:800 22px/1 var(--d);letter-spacing:-.02em}
+.brand img{width:38px;height:38px;border-radius:10px}.brand b{color:var(--orange)}.brand span{display:flex}
+.links{display:flex;align-items:center;gap:4px}.links a{text-decoration:none;color:var(--muted);font-weight:600;font-size:15.5px;padding:9px 14px;border-radius:9px}.links a:hover{color:var(--ink);background:#eef2fa}
+.links .pill{background:var(--ink);color:#fff;margin-left:8px}.links .pill:hover{background:var(--navy2);color:#fff}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;padding:0}
+.burger i{display:block;width:20px;height:2px;background:var(--ink);margin:5px auto;transition:.2s}
+.burger[aria-expanded=true] i:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger[aria-expanded=true] i:nth-child(2){opacity:0}.burger[aria-expanded=true] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.btn{display:inline-block;border-radius:12px;padding:15px 26px;font-weight:800;text-decoration:none;font-size:16.5px;border:0;cursor:pointer}
+.btn.pri{background:var(--orange);color:#1a0d00}.btn.pri:hover{background:#ff8f3f}
+.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line)}.btn.sec:hover{border-color:var(--ink)}
+.btn.soon{background:var(--ink);color:#fff;cursor:default}
+
+.hero{position:relative;overflow:hidden;padding:84px 0 96px;background:
+ linear-gradient(#0c173008 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,#0c173008 1px,transparent 1px) 0 0/44px 44px,var(--bg)}
+.hero:after{content:"";position:absolute;right:-160px;top:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,#ff7a1a2e,transparent 68%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:700;font-size:14.5px;color:var(--muted);margin-bottom:24px}
+.badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.hero h1{font-size:clamp(42px,5.8vw,72px);font-weight:800}
+.hero .lead{font-size:20.5px;color:var(--muted);max-width:30em;margin:22px 0 32px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}.fine{color:var(--muted);font-size:15px;margin:18px 0 0}
+
+/* side panel mock */
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 90px #0c173020,0 2px 0 #fff inset;max-width:430px;margin-left:auto;overflow:hidden;font-size:14px}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line)}
+.ph .b{display:flex;align-items:center;gap:10px;font:800 17px/1 var(--d)}.ph img{width:30px;height:30px;border-radius:8px}
+.tag{font-size:11.5px;font-weight:800;background:#e8f6ef;color:#0e6b40;border-radius:999px;padding:5px 11px;letter-spacing:.04em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 18px 6px}
+.stat{background:#f3f6fb;border-radius:11px;padding:10px 12px}.stat small{display:block;color:var(--muted);font-weight:700;font-size:12px}
+.stat strong{display:block;font:800 24px/1.2 var(--d)}
+.swap{display:inline-grid}.swap>*{grid-area:1/1}
+.swap .a{animation:o 7s ease forwards}.swap .b{animation:n 7s ease forwards;opacity:0}
+@keyframes o{0%,62%{opacity:1}70%,100%{opacity:0}}@keyframes n{0%,66%{opacity:0}76%,100%{opacity:1}}
+.stat .warn{color:var(--oink)}.stat .good{color:var(--ok)}
+.tbl{height:340px;overflow:hidden;padding:6px 18px 0;animation:h 7s ease forwards}@keyframes h{0%,62%{height:340px}100%{height:236px}}
+.tbl table{width:100%;border-collapse:collapse;table-layout:fixed}
+.tbl th{text-align:left;color:var(--muted);font-size:12px;font-weight:700;padding:8px 8px;border-bottom:1px solid var(--line)}
+.tbl th:nth-child(1){width:33%}.tbl th:nth-child(2){width:37%}
+.tbl td{height:38px;padding:0 8px;border-bottom:1px solid #edf1f8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl tr.d td{animation:f 7s ease forwards}
+@keyframes f{0%,16%{background:#fff;height:38px}28%,54%{background:#ffe6d1;color:#8a3a00;height:38px}66%{background:#ffe6d1;color:transparent;height:38px}100%{background:#fff;color:transparent;height:0;font-size:0;border-color:transparent}}
+.pf{padding:14px 18px 18px;border-top:1px solid var(--line);background:#fafbfe}
+.pf .go{display:grid;width:100%}.pf .go>*{grid-area:1/1;text-align:center;border-radius:11px;padding:12px;font-weight:800}
+.pf .a{background:var(--ink);color:#fff;animation:o 7s ease forwards}.pf .b{background:#e8f6ef;color:#0e6b40;opacity:0;animation:n 7s ease forwards}
+
+/* trust strip */
+.strip{background:#fff;border-block:1px solid var(--line)}.strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.strip div.i{padding:26px 24px;border-left:1px solid var(--line)}.strip div.i:first-child{border-left:0;padding-left:0}
+.strip b{display:block;font:800 19px var(--d);letter-spacing:-.02em}.strip span{color:var(--muted);font-size:15.5px}
+
+section{padding:96px 0}.head{max-width:660px;margin-bottom:48px}.head h2{font-size:clamp(32px,4.3vw,50px);font-weight:800}.head p{color:var(--muted);font-size:19.5px;margin:14px 0 0}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;counter-increment:s}
+.steps li:before{content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;font:800 18px var(--d);margin-bottom:18px}
+.steps h3{font-size:23px;margin-bottom:8px}.steps p{margin:0;color:var(--muted)}
+
+/* privacy */
+.dark{background:var(--navy);color:#fff;border-radius:34px;margin:0 16px;position:relative;overflow:hidden}
+.dark:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 90% 0,#ff7a1a2a,transparent 70%)}
+.dark .wrap{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.dark h2{font-size:clamp(32px,4.3vw,50px);font-weight:800}.dark p{color:#bccaea;font-size:19px;margin:16px 0 0;max-width:28em}
+.diag{display:grid;gap:14px}.box{border-radius:18px;padding:20px 22px;border:1px solid #ffffff24;background:#ffffff0d}
+.box h3{font-size:18px;margin-bottom:4px}.box p{font-size:15.5px;margin:0;color:#bccaea}.box.you{border-color:var(--orange);background:#ff7a1a14}
+.box.you h3{color:#ffb77a}.arrow{display:flex;align-items:center;gap:12px;padding:0 10px;color:#9fb0d4;font-weight:700;font-size:15px}
+.arrow:before{content:"";flex:none;width:2px;height:30px;background:repeating-linear-gradient(#9fb0d4 0 5px,transparent 5px 9px)}
+.arrow.no{color:#ff9a9a}.arrow.no:before{background:repeating-linear-gradient(#ff9a9a 0 5px,transparent 5px 9px)}
+.arrow.yes{color:#7de0ae}.arrow.yes:before{background:#7de0ae}
+
+/* features */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}.card h3{font-size:21px;margin:0 0 8px}.card p{margin:0;color:var(--muted)}
+.chip{display:inline-block;font-size:12.5px;font-weight:800;background:#ffe9d6;color:var(--oink);border-radius:7px;padding:3px 9px;margin-bottom:12px}
+.ba{font-family:ui-monospace,Consolas,monospace;font-size:13.5px;background:#f3f6fb;border-radius:10px;padding:11px 13px;margin-top:16px;line-height:1.7}.ba s{color:#8a96b0}.ba b{color:var(--ok)}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:880px}
+.plan{border-radius:24px;padding:38px;border:1px solid var(--line);background:#fff}
+.plan h3{font-size:24px}.price{font:800 58px/1.1 var(--d);letter-spacing:-.04em;margin:14px 0 2px}.price small{font:600 17px Figtree;letter-spacing:0;color:var(--muted)}
+.plan .alt{color:var(--muted);margin:0 0 22px}.plan ul{list-style:none;padding:0;margin:0}
+.plan li{padding:10px 0 10px 32px;position:relative;border-top:1px solid #edf1f8}.plan li:before{content:"";position:absolute;left:5px;top:16px;width:12px;height:7px;border-left:3px solid var(--ok);border-bottom:3px solid var(--ok);transform:rotate(-45deg)}
+.plan.pro{background:var(--navy);color:#fff;border:0;box-shadow:0 30px 70px #08102a44}.plan.pro .alt,.plan.pro .price small{color:#b4c1df}.plan.pro li{border-color:#ffffff1f}.plan.pro li:before{border-color:var(--orange)}
+.note{margin:24px 0 0;color:var(--muted);font-size:15.5px;max-width:50em}
+
+.faq{max-width:780px}.faq details{border-top:1px solid var(--line)}.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font:700 19.5px/1.3 var(--d);padding:20px 40px 20px 0;list-style:none;position:relative}.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";position:absolute;right:6px;top:13px;font-size:30px;color:var(--oink);transition:.2s}.faq details[open] summary:after{transform:rotate(45deg)}
+.faq p{margin:0 0 22px;color:var(--muted);max-width:42em}
+
+.end{text-align:center;padding:100px 0}.end h2{font-size:clamp(34px,5vw,58px);font-weight:800;max-width:13em;margin:0 auto 16px}.end p{color:var(--muted);font-size:19.5px;max-width:30em;margin:0 auto 30px}.end .cta{justify-content:center}
+footer{border-top:1px solid var(--line);background:#fff;padding:36px 0;font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}footer a{margin-right:20px;text-decoration:none;color:var(--ink);font-weight:600}footer a:hover{text-decoration:underline}footer p{margin:0}
+
+.doc{background:#fff;padding:64px 0 96px}.doc .wrap{max-width:780px}.doc h1{font-size:clamp(34px,5vw,50px);font-weight:800;margin-bottom:6px}.doc .when{color:var(--muted);margin:0 0 28px}
+.doc h2{font-size:24px;margin:38px 0 8px}.doc p,.doc li{color:#34415e}.doc li{margin:6px 0}.doc a{color:var(--oink);font-weight:700}
+
+@media(max-width:920px){
+ .hero{padding:48px 0 64px}.hero .wrap,.dark .wrap{grid-template-columns:1fr;gap:42px}.panel{margin:0 auto;max-width:460px}
+ .strip .wrap{grid-template-columns:1fr}.strip div.i{border-left:0;border-top:1px solid var(--line);padding:18px 0}.strip div.i:first-child{border-top:0}
+ .steps,.grid,.plans{grid-template-columns:1fr}section{padding:68px 0}.dark{margin:0 10px;border-radius:26px}
+ .burger{display:block}.links{display:none;position:absolute;left:0;right:0;top:70px;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 24px 20px;gap:2px}
+ .links.open{display:flex}.links a{padding:14px 10px;font-size:17px}.links .pill{margin:8px 0 0;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.tbl{animation:none;height:236px}.swap .a,.swap .b,.pf .a,.pf .b,.tbl tr.d td{animation:none}.tbl tr.d{display:none}.swap .a,.pf .a{opacity:0}.swap .b,.pf .b{opacity:1}html{scroll-behavior:auto}}
+</style></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="wrap"><a class="brand" href="index.html"><img src="logo.png" alt="" width="38" height="38"><span>Sheet<b>Pilot</b></span></a><button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i><i></i></button><nav class="links" id="links" aria-label="Main"><a href="index.html#how">How it works</a><a href="index.html#privacy">Privacy</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="index.html#faq">FAQ</a><a class="pill" href="index.html#get">Coming soon</a></nav></div></header><main id="main" class="doc"><div class="wrap"><h1>Privacy Policy</h1><p class="when">Last updated: November 2, 2026</p><p>SheetPilot is made by Juan Paolo Dente. This page explains in plain words what we collect and why.</p><h2>Your CSV files</h2><p>Your files are opened and cleaned inside your browser on your own computer. We do not upload, copy, or store the contents of your files.</p>
 <h2>What we do collect</h2><ul><li><b>Your email address</b>, so you can sign in with a one time code.</li><li><b>Your plan details</b>, such as whether you are on Free or Premium and when your plan renews or ends. These come from our payment provider.</li><li><b>Your saved settings</b> (Premium only), such as the cleaning presets you choose to save.</li></ul>
 <p>We do not collect your card number. Payment details are entered on the Lemon Squeezy checkout page and never reach us. We do not show ads, we do not use trackers, and we never sell your information.</p>
 <h2>Who helps us run SheetPilot</h2><ul><li><b>Supabase</b> stores sign in and plan information.</li><li><b>Resend</b> sends your sign in code emails.</li><li><b>Lemon Squeezy</b> handles payments and sends receipts. They act as the seller of record and have their own privacy policy.</li></ul>
@@ -6,4 +120,4 @@
 <h2>Your choices</h2><p>You can ask us to see, fix, or delete your data at any time by emailing <a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a>. We will delete your account data within 30 days of a confirmed request. Some payment records may be kept by Lemon Squeezy as the law requires.</p>
 <h2>Security</h2><p>Your plan data is protected so that only you can read your own records, and only our server can change your plan. No system is perfect, but we work to keep your information safe.</p>
 <h2>Changes</h2><p>If we change this policy, we will update the date above.</p>
-<h2>Contact</h2><p><a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></p></div></main><footer class="site"><div class="wrap"><div><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></div><p>Made by Juan Paolo Dente in the Philippines.</p></div></footer><script src="site.js"></script></body></html>
+<h2>Contact</h2><p><a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></p></div></main><footer><div class="wrap"><div><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></div><p>Made by Juan Paolo Dente in the Philippines.</p></div></footer><script>const b=document.querySelector('.burger'),l=document.querySelector('.links');if(b&&l){const c=()=>{l.classList.remove('open');b.setAttribute('aria-expanded','false')};b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});l.addEventListener('click',e=>{if(e.target.tagName==='A')c()});document.addEventListener('keydown',e=>{if(e.key==='Escape')c()})}</script></body></html>
