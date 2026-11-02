@@ -1,0 +1,2 @@
+const b=document.querySelector('.burger'),l=document.querySelector('.links');
+if(b&&l){b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});l.addEventListener('click',e=>{if(e.target.tagName==='A'){l.classList.remove('open');b.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){l.classList.remove('open');b.setAttribute('aria-expanded','false')}})}
