@@ -1,95 +1,97 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SheetPilot: Clean CSV files without uploading them</title><meta name="description" content="SheetPilot is a Chrome extension that removes duplicates and fixes messy CSV data on your own computer. Your file is never uploaded."><meta name="theme-color" content="#f4f9f6"><link rel="icon" href="logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700;800&display=swap"><style>
-:root{--ink:#10231a;--navy:#0b2e1c;--navy2:#14452b;--orange:#217346;--oink:#185c37;--bg:#f4f9f6;--card:#fff;--line:#d6e5db;--muted:#4a5f54;--ok:#217346;--d:"Bricolage Grotesque",Figtree,system-ui,sans-serif}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><script>try{var t=localStorage.getItem("sp-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script><meta name="viewport" content="width=device-width,initial-scale=1"><title>SheetPilot: Clean CSV and Excel files without uploading them</title><meta name="description" content="SheetPilot is a Chrome extension that removes duplicates, fixes messy data and makes Excel files look professional, all on your own computer. Your file is never uploaded."><meta name="theme-color" content="#f2f5f8" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0f1519" media="(prefers-color-scheme: dark)"><link rel="icon" href="logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700;800&display=swap"><style>
+:root{--ink:#14202b;--navy:#0d3b3a;--navy2:#12504d;--orange:#0f766e;--oink:#0b5f58;--bg:#f2f5f8;--card:#ffffff;--line:#dbe3ea;--line2:#e8edf2;--muted:#516170;--text2:#3d4b58;--ok:#0f766e;--on:#ffffff;--acc-hover:#0b5f58;--soft:#dff3f0;--accink:#0b5f58;--surf2:#eaf0f4;--surf3:#f6f9fb;--navbg:#ffffffee;--grid:#0f766e14;--glow:#0f766e26;--warnbg:#fff1b8;--warnink:#6b5200;--warn2:#9a6b00;--shadow:#14202b26;--d:"Bricolage Grotesque",Figtree,system-ui,sans-serif;color-scheme:light}
+:root[data-theme="dark"]{--ink:#d9e3ea;--navy:#12312f;--navy2:#174442;--orange:#3cc4b4;--oink:#7fe0d3;--bg:#0f1519;--card:#172026;--line:#2b3b46;--line2:#233039;--muted:#97a9b6;--text2:#b5c4cf;--ok:#5bd3c5;--on:#06211e;--acc-hover:#5bd3c5;--soft:#183a3a;--accink:#7fe0d3;--surf2:#1f2b33;--surf3:#131b20;--navbg:#0f1519ee;--grid:#3cc4b414;--glow:#3cc4b41f;--warnbg:#4a3d12;--warnink:#f2dc8a;--warn2:#e0b84a;--shadow:#00000066;color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#d9e3ea;--navy:#12312f;--navy2:#174442;--orange:#3cc4b4;--oink:#7fe0d3;--bg:#0f1519;--card:#172026;--line:#2b3b46;--line2:#233039;--muted:#97a9b6;--text2:#b5c4cf;--ok:#5bd3c5;--on:#06211e;--acc-hover:#5bd3c5;--soft:#183a3a;--accink:#7fe0d3;--surf2:#1f2b33;--surf3:#131b20;--navbg:#0f1519ee;--grid:#3cc4b414;--glow:#3cc4b41f;--warnbg:#4a3d12;--warnink:#f2dc8a;--warn2:#e0b84a;--shadow:#00000066;color-scheme:dark}}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Figtree,system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--d);margin:0;letter-spacing:-.03em;line-height:1.06}
 a{color:inherit}.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
-.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:99;border-radius:8px}
-.nav{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--card);padding:8px 12px;z-index:99;border-radius:8px}
+.nav{position:sticky;top:0;z-index:50;background:var(--navbg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font:800 22px/1 var(--d);letter-spacing:-.02em}
 .brand img{width:38px;height:38px;border-radius:10px}.brand b{color:var(--orange)}.brand span{display:flex}
-.links{display:flex;align-items:center;gap:4px}.links a{text-decoration:none;color:var(--muted);font-weight:600;font-size:15.5px;padding:9px 14px;border-radius:9px}.links a:hover{color:var(--ink);background:#eaf4ee}
-.links .pill{background:var(--orange);color:#fff;margin-left:8px}.links .pill:hover{background:#185c37;color:#fff}
-.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;padding:0}
+.links{display:flex;align-items:center;gap:4px}.links a{text-decoration:none;color:var(--muted);font-weight:600;font-size:15.5px;padding:9px 14px;border-radius:9px}.links a:hover{color:var(--ink);background:var(--surf2)}
+.links .pill{background:var(--orange);color:var(--on);margin-left:8px}.links .pill:hover{background:var(--acc-hover);color:var(--on)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:11px;background:var(--card);cursor:pointer;padding:0}
 .burger i{display:block;width:20px;height:2px;background:var(--ink);margin:5px auto;transition:.2s}
 .burger[aria-expanded=true] i:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger[aria-expanded=true] i:nth-child(2){opacity:0}.burger[aria-expanded=true] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .btn{display:inline-block;border-radius:12px;padding:15px 26px;font-weight:800;text-decoration:none;font-size:16.5px;border:0;cursor:pointer}
-.btn.pri{background:var(--orange);color:#fff}.btn.pri:hover{background:#2a8a56}
-.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line)}.btn.sec:hover{border-color:var(--ink)}
-.btn.soon{background:var(--orange);color:#fff;cursor:default}
+.btn.pri{background:var(--orange);color:var(--on)}.btn.pri:hover{background:var(--acc-hover)}
+.btn.sec{background:var(--card);color:var(--ink);border:1.5px solid var(--line)}.btn.sec:hover{border-color:var(--ink)}
+.btn.soon{background:var(--orange);color:var(--on);cursor:default}
 
 .hero{position:relative;overflow:hidden;padding:84px 0 96px;background:
- linear-gradient(#21734612 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,#21734612 1px,transparent 1px) 0 0/44px 44px,var(--bg)}
-.hero:after{content:"";position:absolute;right:-160px;top:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,#21734624,transparent 68%)}
+ linear-gradient(var(--grid) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/44px 44px,var(--bg)}
+.hero:after{content:"";position:absolute;right:-160px;top:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 68%)}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:700;font-size:14.5px;color:var(--muted);margin-bottom:24px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:700;font-size:14.5px;color:var(--muted);margin-bottom:24px}
 .badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
 .hero h1{font-size:clamp(42px,5.8vw,72px);font-weight:800}
 .hero .lead{font-size:20.5px;color:var(--muted);max-width:30em;margin:22px 0 32px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}.fine{color:var(--muted);font-size:15px;margin:18px 0 0}
 
 /* side panel mock */
-.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 90px #0c173020,0 2px 0 #fff inset;max-width:430px;margin-left:auto;overflow:hidden;font-size:14px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 90px var(--shadow),0 2px 0 #fff inset;max-width:430px;margin-left:auto;overflow:hidden;font-size:14px}
 .ph{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line)}
 .ph .b{display:flex;align-items:center;gap:10px;font:800 17px/1 var(--d)}.ph img{width:30px;height:30px;border-radius:8px}
-.tag{font-size:11.5px;font-weight:800;background:#e8f6ef;color:#0e6b40;border-radius:999px;padding:5px 11px;letter-spacing:.04em}
+.tag{font-size:11.5px;font-weight:800;background:var(--soft);color:var(--accink);border-radius:999px;padding:5px 11px;letter-spacing:.04em}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 18px 6px}
-.stat{background:#eef6f1;border-radius:11px;padding:10px 12px}.stat small{display:block;color:var(--muted);font-weight:700;font-size:12px}
+.stat{background:var(--surf2);border-radius:11px;padding:10px 12px}.stat small{display:block;color:var(--muted);font-weight:700;font-size:12px}
 .stat strong{display:block;font:800 24px/1.2 var(--d)}
 .swap{display:inline-grid}.swap>*{grid-area:1/1}
 .swap .a{animation:o 7s ease forwards}.swap .b{animation:n 7s ease forwards;opacity:0}
 @keyframes o{0%,62%{opacity:1}70%,100%{opacity:0}}@keyframes n{0%,66%{opacity:0}76%,100%{opacity:1}}
-.stat .warn{color:#9a6b00}.stat .good{color:var(--ok)}
+.stat .warn{color:var(--warn2)}.stat .good{color:var(--ok)}
 .tbl{height:340px;overflow:hidden;padding:6px 18px 0;animation:h 7s ease forwards}@keyframes h{0%,62%{height:340px}100%{height:236px}}
 .tbl table{width:100%;border-collapse:collapse;table-layout:fixed}
 .tbl th{text-align:left;color:var(--muted);font-size:12px;font-weight:700;padding:8px 8px;border-bottom:1px solid var(--line)}
 .tbl th:nth-child(1){width:33%}.tbl th:nth-child(2){width:37%}
-.tbl td{height:38px;padding:0 8px;border-bottom:1px solid #e6f0ea;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl td{height:38px;padding:0 8px;border-bottom:1px solid var(--line2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tbl tr.d td{animation:f 7s ease forwards}
-@keyframes f{0%,16%{background:#fff;height:38px}28%,54%{background:#fff1b8;color:#6b5200;height:38px}66%{background:#fff1b8;color:transparent;height:38px}100%{background:#fff;color:transparent;height:0;font-size:0;border-color:transparent}}
-.pf{padding:14px 18px 18px;border-top:1px solid var(--line);background:#f7fbf8}
+@keyframes f{0%,16%{background:var(--card);height:38px}28%,54%{background:var(--warnbg);color:var(--warnink);height:38px}66%{background:var(--warnbg);color:transparent;height:38px}100%{background:var(--card);color:transparent;height:0;font-size:0;border-color:transparent}}
+.pf{padding:14px 18px 18px;border-top:1px solid var(--line);background:var(--surf3)}
 .pf .go{display:grid;width:100%}.pf .go>*{grid-area:1/1;text-align:center;border-radius:11px;padding:12px;font-weight:800}
-.pf .a{background:var(--ink);color:#fff;animation:o 7s ease forwards}.pf .b{background:#e8f6ef;color:#0e6b40;opacity:0;animation:n 7s ease forwards}
+.pf .a{background:var(--orange);color:var(--on);animation:o 7s ease forwards}.pf .b{background:var(--soft);color:var(--accink);opacity:0;animation:n 7s ease forwards}
 
 /* trust strip */
-.strip{background:#fff;border-block:1px solid var(--line)}.strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.strip{background:var(--card);border-block:1px solid var(--line)}.strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 .strip div.i{padding:26px 24px;border-left:1px solid var(--line)}.strip div.i:first-child{border-left:0;padding-left:0}
 .strip b{display:block;font:800 19px var(--d);letter-spacing:-.02em}.strip span{color:var(--muted);font-size:15.5px}
 
 section{padding:96px 0}.head{max-width:660px;margin-bottom:48px}.head h2{font-size:clamp(32px,4.3vw,50px);font-weight:800}.head p{color:var(--muted);font-size:19.5px;margin:14px 0 0}
 
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0;margin:0;list-style:none;counter-reset:s}
-.steps li{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;counter-increment:s}
-.steps li:before{content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;font:800 18px var(--d);margin-bottom:18px}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;counter-increment:s}
+.steps li:before{content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--orange);color:var(--on);font:800 18px var(--d);margin-bottom:18px}
 .steps h3{font-size:23px;margin-bottom:8px}.steps p{margin:0;color:var(--muted)}
 
 /* privacy */
 .dark{background:var(--navy);color:#fff;border-radius:34px;margin:0 16px;position:relative;overflow:hidden}
-.dark:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 90% 0,#2173463a,transparent 70%)}
+.dark:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 90% 0,#0f766e3a,transparent 70%)}
 .dark .wrap{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
-.dark h2{font-size:clamp(32px,4.3vw,50px);font-weight:800}.dark p{color:#c3dccd;font-size:19px;margin:16px 0 0;max-width:28em}
-.diag{display:grid;gap:14px}.box{border-radius:18px;padding:20px 22px;border:1px solid #ffffff24;background:#ffffff0d}
-.box h3{font-size:18px;margin-bottom:4px}.box p{font-size:15.5px;margin:0;color:#c3dccd}.box.you{border-color:var(--orange);background:#21734622}
-.box.you h3{color:#8fe0b2}.arrow{display:flex;align-items:center;gap:12px;padding:0 10px;color:#a3c9b2;font-weight:700;font-size:15px}
+.dark h2{font-size:clamp(32px,4.3vw,50px);font-weight:800}.dark p{color:#bcd9d5;font-size:19px;margin:16px 0 0;max-width:28em}
+.diag{display:grid;gap:14px}.box{border-radius:18px;padding:20px 22px;border:1px solid #ffffff24;background:var(--card)fff0d}
+.box h3{font-size:18px;margin-bottom:4px}.box p{font-size:15.5px;margin:0;color:#bcd9d5}.box.you{border-color:var(--orange);background:#3cc4b422}
+.box.you h3{color:#7fe0d3}.arrow{display:flex;align-items:center;gap:12px;padding:0 10px;color:#a3c9b2;font-weight:700;font-size:15px}
 .arrow:before{content:"";flex:none;width:2px;height:30px;background:repeating-linear-gradient(#a3c9b2 0 5px,transparent 5px 9px)}
 .arrow.no{color:#ff9a9a}.arrow.no:before{background:repeating-linear-gradient(#ff9a9a 0 5px,transparent 5px 9px)}
-.arrow.yes{color:#7de0ae}.arrow.yes:before{background:#7de0ae}
+.arrow.yes{color:#6fe3d3}.arrow.yes:before{background:#6fe3d3}
 
 /* features */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}.card h3{font-size:21px;margin:0 0 8px}.card p{margin:0;color:var(--muted)}
-.chip{display:inline-block;font-size:12.5px;font-weight:800;background:#dff1e6;color:var(--oink);border-radius:7px;padding:3px 9px;margin-bottom:12px}
-.ba{font-family:ui-monospace,Consolas,monospace;font-size:13.5px;background:#eef6f1;border-radius:10px;padding:11px 13px;margin-top:16px;line-height:1.7}.ba s{color:#8a96b0}.ba b{color:var(--ok)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}.card h3{font-size:21px;margin:0 0 8px}.card p{margin:0;color:var(--muted)}
+.chip{display:inline-block;font-size:12.5px;font-weight:800;background:var(--soft);color:var(--accink);border-radius:7px;padding:3px 9px;margin-bottom:12px}
+.ba{font-family:ui-monospace,Consolas,monospace;font-size:13.5px;background:var(--surf2);border-radius:10px;padding:11px 13px;margin-top:16px;line-height:1.7}.ba s{color:var(--muted)}.ba b{color:var(--ok)}
 
 /* pricing */
 .plans{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:880px}
-.plan{border-radius:24px;padding:38px;border:1px solid var(--line);background:#fff}
+.plan{border-radius:24px;padding:38px;border:1px solid var(--line);background:var(--card)}
 .plan h3{font-size:24px}.price{font:800 58px/1.1 var(--d);letter-spacing:-.04em;margin:14px 0 2px}.price small{font:600 17px Figtree;letter-spacing:0;color:var(--muted)}
 .plan .alt{color:var(--muted);margin:0 0 22px}.plan ul{list-style:none;padding:0;margin:0}
-.plan li{padding:10px 0 10px 32px;position:relative;border-top:1px solid #e6f0ea}.plan li:before{content:"";position:absolute;left:5px;top:16px;width:12px;height:7px;border-left:3px solid var(--ok);border-bottom:3px solid var(--ok);transform:rotate(-45deg)}
-.plan.pro{background:var(--navy);color:#fff;border:0;box-shadow:0 30px 70px #0b2e1c44}.plan.pro .alt,.plan.pro .price small{color:#b4d3c0}.plan.pro li{border-color:#ffffff1f}.plan.pro li:before{border-color:#7de0ae}
+.plan li{padding:10px 0 10px 32px;position:relative;border-top:1px solid var(--line2)}.plan li:before{content:"";position:absolute;left:5px;top:16px;width:12px;height:7px;border-left:3px solid var(--ok);border-bottom:3px solid var(--ok);transform:rotate(-45deg)}
+.plan.pro{background:var(--navy);color:#fff;border:0;box-shadow:0 30px 70px #0d3b3a44}.plan.pro .alt,.plan.pro .price small{color:#b4dad6}.plan.pro li{border-color:#ffffff1f}.plan.pro li:before{border-color:#6fe3d3}
 .note{margin:24px 0 0;color:var(--muted);font-size:15.5px;max-width:50em}
 
 .faq{max-width:780px}.faq details{border-top:1px solid var(--line)}.faq details:last-child{border-bottom:1px solid var(--line)}
@@ -98,25 +100,29 @@ section{padding:96px 0}.head{max-width:660px;margin-bottom:48px}.head h2{font-si
 .faq p{margin:0 0 22px;color:var(--muted);max-width:42em}
 
 .end{text-align:center;padding:100px 0}.end h2{font-size:clamp(34px,5vw,58px);font-weight:800;max-width:13em;margin:0 auto 16px}.end p{color:var(--muted);font-size:19.5px;max-width:30em;margin:0 auto 30px}.end .cta{justify-content:center}
-footer{border-top:1px solid var(--line);background:#fff;padding:36px 0;font-size:15px;color:var(--muted)}
+footer{border-top:1px solid var(--line);background:var(--card);padding:36px 0;font-size:15px;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}footer a{margin-right:20px;text-decoration:none;color:var(--ink);font-weight:600}footer a:hover{text-decoration:underline}footer p{margin:0}
 
-.doc{background:#fff;padding:64px 0 96px}.doc .wrap{max-width:780px}.doc h1{font-size:clamp(34px,5vw,50px);font-weight:800;margin-bottom:6px}.doc .when{color:var(--muted);margin:0 0 28px}
-.doc h2{font-size:24px;margin:38px 0 8px}.doc p,.doc li{color:#34415e}.doc li{margin:6px 0}.doc a{color:var(--oink);font-weight:700}
+.doc{background:var(--card);padding:64px 0 96px}.doc .wrap{max-width:780px}.doc h1{font-size:clamp(34px,5vw,50px);font-weight:800;margin-bottom:6px}.doc .when{color:var(--muted);margin:0 0 28px}
+.doc h2{font-size:24px;margin:38px 0 8px}.doc p,.doc li{color:var(--text2)}.doc li{margin:6px 0}.doc a{color:var(--oink);font-weight:700}
 
+
+.theme{order:2;margin-left:12px;width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;padding:0;display:grid;place-items:center}.theme:hover{background:var(--surf2)}
+.links{order:1;margin-left:auto}.burger{order:3;margin-left:8px}
+.skip:focus{color:#14202b}
 @media(max-width:920px){
  .hero{padding:48px 0 64px}.hero .wrap,.dark .wrap{grid-template-columns:1fr;gap:42px}.panel{margin:0 auto;max-width:460px}
  .strip .wrap{grid-template-columns:1fr}.strip div.i{border-left:0;border-top:1px solid var(--line);padding:18px 0}.strip div.i:first-child{border-top:0}
  .steps,.grid,.plans{grid-template-columns:1fr}section{padding:68px 0}.dark{margin:0 10px;border-radius:26px}
- .burger{display:block}.links{display:none;position:absolute;left:0;right:0;top:70px;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 24px 20px;gap:2px}
+ .burger{display:block}.links{margin-left:0;display:none;position:absolute;left:0;right:0;top:70px;background:var(--card);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 24px 20px;gap:2px}
  .links.open{display:flex}.links a{padding:14px 10px;font-size:17px}.links .pill{margin:8px 0 0;text-align:center}
 }
 @media(prefers-reduced-motion:reduce){.tbl{animation:none;height:236px}.swap .a,.swap .b,.pf .a,.pf .b,.tbl tr.d td{animation:none}.tbl tr.d{display:none}.swap .a,.pf .a{opacity:0}.swap .b,.pf .b{opacity:1}html{scroll-behavior:auto}}
-</style></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="wrap"><a class="brand" href="index.html"><img src="logo.png" alt="" width="38" height="38"><span>Sheet<b>Pilot</b></span></a><button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i><i></i></button><nav class="links" id="links" aria-label="Main"><a href="index.html#how">How it works</a><a href="index.html#privacy">Privacy</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="index.html#faq">FAQ</a><a class="pill" href="index.html#get">Coming soon</a></nav></div></header><main id="main">
+</style></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="wrap"><a class="brand" href="index.html"><img src="logo.png" alt="" width="38" height="38"><span>Sheet<b>Pilot</b></span></a><button class="theme" type="button" aria-label="Switch to dark mode"></button><button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i><i></i></button><nav class="links" id="links" aria-label="Main"><a href="index.html#how">How it works</a><a href="index.html#privacy">Privacy</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="index.html#faq">FAQ</a><a class="pill" href="index.html#get">Coming soon</a></nav></div></header><main id="main">
 <section class="hero" style="padding-bottom:96px"><div class="wrap"><div>
 <div class="badge">Chrome extension, launching soon</div>
-<h1>Clean your CSV files without uploading them.</h1>
-<p class="lead">SheetPilot finds duplicates and fixes messy data right inside Chrome. Review every change, undo anything, and keep your customers' details on your own computer.</p>
+<h1>Clean your spreadsheets without uploading them.</h1>
+<p class="lead">SheetPilot cleans CSV and Excel files right inside Chrome. Fix duplicates and messy data in one click, then download a polished Excel file. Your customers' details stay on your own computer.</p>
 <div class="cta" id="get"><span class="btn soon" role="note">Coming to the Chrome Web Store</span><a class="btn sec" href="#how">See how it works</a></div>
 <p class="fine">Free to start. No account needed for your first clean file.</p></div>
 <div class="panel" role="img" aria-label="The SheetPilot side panel finding 3 duplicate rows, highlighting them, and removing them"><div class="ph"><div class="b"><img src="logo.png" alt="" width="30" height="30">SheetPilot</div><span class="tag">FREE</span></div>
@@ -128,22 +134,25 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
 <div class="strip"><div class="wrap"><div class="i"><b>Runs in your browser</b><span>No servers touch your spreadsheet.</span></div><div class="i"><b>You approve every change</b><span>Preview first. Undo before you download.</span></div><div class="i"><b>Free plan included</b><span>Clean files up to 1,000 rows at no cost.</span></div></div></div>
 
 <section id="how"><div class="wrap"><div class="head"><h2>Clean a file in three steps</h2><p>Nothing changes until you say so.</p></div>
-<ol class="steps"><li><h3>Choose your file</h3><p>Pick a CSV from your computer. It opens instantly in the side panel.</p></li><li><h3>Review what is wrong</h3><p>Duplicates and problems are highlighted. Your file is not touched yet.</p></li><li><h3>Apply and download</h3><p>Happy with it? Apply the fixes and download. Changed your mind? Undo.</p></li></ol></div></section>
+<ol class="steps"><li><h3>Choose your file</h3><p>Pick a CSV or Excel file from your computer. It opens instantly in the side panel.</p></li><li><h3>Review what is wrong</h3><p>Duplicates and problems are highlighted. Your file is not touched yet.</p></li><li><h3>Apply and download</h3><p>Happy with it? Apply the fixes and download. Changed your mind? Undo.</p></li></ol></div></section>
 
 <section class="dark" id="privacy"><div class="wrap"><div><h2>Your spreadsheet never leaves your computer</h2><p>Most online cleaners ask you to upload your file to their server. SheetPilot does all the work inside your browser, so customer lists, orders and contacts stay private.</p></div>
 <div class="diag"><div class="box you"><h3>On your computer</h3><p>Your CSV is opened, checked and cleaned here. Always.</p></div><div class="arrow no">Your file contents are never sent</div><div class="box"><h3>SheetPilot account</h3><p>Only your email and plan status, so Premium works on any computer.</p></div></div></div></section>
 
 <section id="features"><div class="wrap"><div class="head"><h2>Made for the lists you actually have</h2><p>Customer lists, order exports, event sign ups. The messy ones.</p></div>
-<div class="grid"><div class="card"><h3>Smart duplicate finder</h3><p>Match on the columns you choose, ignore capital letters, and see every match before removing it.</p><div class="ba"><s>Maria Santos</s><br><s>MARIA SANTOS</s> <b>1 match</b></div></div>
-<div class="card"><span class="chip">Premium</span><h3>Philippine mobile numbers</h3><p>Turn many formats into one clean, consistent format.</p><div class="ba"><s>0917 123 4567</s><br><s>+63 917 123 4567</s><br><b>+639171234567</b></div></div>
+<div class="grid"><div class="card"><h3>Clean it for me</h3><p>One click removes duplicates and extra spaces. You see exactly what will change before anything is applied.</p></div>
+<div class="card"><h3>Excel in, polished Excel out</h3><p>Open CSV or Excel files, then download a neat .xlsx with a clean font, a colored header, columns and rows that fit, a frozen top row and filters.</p><div class="ba"><s>Plain, cramped sheet</s><br><b>Clean, readable, professional</b></div></div>
+<div class="card"><span class="chip">Premium</span><h3>Phone numbers, any country</h3><p>Pick your country and every number becomes one clean format. Numbers that look wrong are left alone.</p><div class="ba"><s>(212) 555-1234</s><br><s>212.555.1234</s><br><b>+12125551234</b></div></div>
+<div class="card"><h3>Smart duplicate finder</h3><p>Match on the columns you choose, ignore capital letters, and see every match before removing it.</p><div class="ba"><s>Maria Santos</s><br><s>MARIA SANTOS</s> <b>1 match</b></div></div>
+<div class="card"><span class="chip">Premium</span><h3>Auto totals</h3><p>Add a totals row that uses real Excel formulas, so the numbers keep updating when you edit them.</p><div class="ba"><s>Total</s> <b>=SUM(E2:E40)</b></div></div>
 <div class="card"><h3>Problem checks</h3><p>Flag blank cells, bad emails, wrong numbers and odd dates in the columns you pick. Your data stays unchanged.</p></div>
 <div class="card"><span class="chip">Premium</span><h3>Bigger files</h3><p>Clean files up to 50,000 rows. The free plan covers up to 1,000.</p></div>
 <div class="card"><span class="chip">Premium</span><h3>Saved settings</h3><p>Save your cleaning setup once. It follows you to every computer you sign in on.</p></div>
 <div class="card"><h3>Undo anytime</h3><p>Apply a fix, change your mind, and go back before you download. Nothing is permanent.</p></div></div></div></section>
 
 <section id="pricing" style="padding-top:20px"><div class="wrap"><div class="head"><h2>Simple pricing</h2><p>Start free. Upgrade only if you need bigger files and the extra tools.</p></div>
-<div class="plans"><div class="plan"><h3>Free</h3><div class="price">₱0</div><p class="alt">Forever</p><ul><li>Duplicate removal and cleaning</li><li>Files up to 1,000 rows</li><li>Undo before you download</li></ul></div>
-<div class="plan pro"><h3>Premium</h3><div class="price">₱180 <small>per month</small></div><p class="alt">Or ₱1,800 per year</p><ul><li>Files up to 50,000 rows</li><li>Advanced tools and custom checks</li><li>Smart fixes for phone numbers and empty rows</li><li>Saved settings on every computer</li></ul></div></div>
+<div class="plans"><div class="plan"><h3>Free</h3><div class="price">₱0</div><p class="alt">Forever</p><ul><li>Open CSV and Excel files</li><li>One click clean up and duplicate removal</li><li>Polished Excel download</li><li>Files up to 1,000 rows</li><li>Undo before you download</li></ul></div>
+<div class="plan pro"><h3>Premium</h3><div class="price">₱180 <small>per month</small></div><p class="alt">Or ₱1,800 per year</p><ul><li>Files up to 50,000 rows</li><li>Advanced tools and custom checks</li><li>Phone numbers fixed for any country</li><li>Auto totals row with Excel formulas</li><li>Empty rows removed</li><li>Saved settings on every computer</li></ul></div></div>
 <p class="note">Premium opens when SheetPilot launches on the Chrome Web Store. Payments are handled by Lemon Squeezy, so your card details never touch SheetPilot. Cancel anytime and keep Premium until the end of the period you paid for.</p></div></section>
 
 <section id="faq" style="padding-top:20px"><div class="wrap"><div class="head"><h2>Questions</h2></div><div class="faq">
@@ -151,6 +160,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
 <details><summary>Do I need an account?</summary><p>Not for the free plan. You only sign in, with a code sent to your email, when you want Premium.</p></details>
 <details><summary>Can I undo a change?</summary><p>Yes. You review changes first, and you can undo before you download.</p></details>
 <details><summary>How do I pay, and can I cancel?</summary><p>Payments go through Lemon Squeezy. Cancel anytime and keep Premium until your paid period ends.</p></details>
-<details><summary>What file types work?</summary><p>CSV files. Excel files can be saved as CSV first from Excel or Google Sheets.</p></details></div></div></section>
+<details><summary>What file types work?</summary><p>CSV files and Excel (.xlsx) files. For Excel files, SheetPilot uses the first sheet.</p></details></div></div></section>
 
-<section class="end"><div class="wrap"><h2>Clean data, without handing it over</h2><p>SheetPilot is on its way to the Chrome Web Store. Want to know the day it lands? Send a quick email.</p><div class="cta"><a class="btn pri" href="mailto:sheetpilot.help@gmail.com?subject=Tell%20me%20when%20SheetPilot%20is%20live">Email me when it is live</a></div></div></section></main><footer><div class="wrap"><div><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="mailto:sheetpilot.help@gmail.com">sheetpilot.help@gmail.com</a></div><p>© 2026 SheetPilot</p></div></footer><script>const b=document.querySelector('.burger'),l=document.querySelector('.links');if(b&&l){const c=()=>{l.classList.remove('open');b.setAttribute('aria-expanded','false')};b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});l.addEventListener('click',e=>{if(e.target.tagName==='A')c()});document.addEventListener('keydown',e=>{if(e.key==='Escape')c()})}</script></body></html>
+<section class="end"><div class="wrap"><h2>Clean data, without handing it over</h2><p>SheetPilot is on its way to the Chrome Web Store. Want to know the day it lands? Send a quick email.</p><div class="cta"><a class="btn pri" href="mailto:sheetpilot.help@gmail.com?subject=Tell%20me%20when%20SheetPilot%20is%20live">Email me when it is live</a></div></div></section></main><footer><div class="wrap"><div><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="mailto:sheetpilot.help@gmail.com">sheetpilot.help@gmail.com</a></div><p>© 2026 SheetPilot</p></div></footer><script>(function(){var r=document.documentElement,t=document.querySelector('.theme');function dark(){var a=r.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches}function paint(){if(t){var d=dark();t.textContent=d?'\u2600':'\u263E';t.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode')}}paint();if(t)t.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('sp-theme',n)}catch(e){}paint()})})();const b=document.querySelector('.burger'),l=document.querySelector('.links');if(b&&l){const c=()=>{l.classList.remove('open');b.setAttribute('aria-expanded','false')};b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});l.addEventListener('click',e=>{if(e.target.tagName==='A')c()});document.addEventListener('keydown',e=>{if(e.key==='Escape')c()})}</script></body></html>
